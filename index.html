@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#65d5ce" />
+    <meta name="description" content="欲しいものを買うために必要な労働時間を、かんたんに計算できるアプリです。" />
+    <title>欲しいもの、何時間働けば買える？</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section id="input-screen" class="screen" aria-labelledby="app-title">
+        <header class="hero">
+          <div class="hero-icon" aria-hidden="true">⌛</div>
+          <p class="eyebrow">かんたん時間シミュレーター</p>
+          <h1 id="app-title">欲しいもの、<br /><span>何時間働けば買える？</span></h1>
+          <p class="intro">欲しいものまでの道のりを、<br />あなたの働く時間で見てみよう。</p>
+        </header>
+
+        <form id="calculator-form" novalidate>
+          <div class="form-card">
+            <label for="item-name"><span class="step">1</span> 欲しいもの</label>
+            <input id="item-name" name="itemName" type="text" placeholder="例：新しいスマホ" maxlength="40" required />
+          </div>
+
+          <div class="form-card">
+            <label for="price"><span class="step">2</span> 欲しいものの金額</label>
+            <div class="input-with-unit">
+              <input id="price" name="price" type="text" inputmode="numeric" placeholder="300,000" autocomplete="off" required />
+              <span>円</span>
+            </div>
+          </div>
+
+          <div class="form-card">
+            <label for="wage"><span class="step">3</span> あなたの時給</label>
+            <div class="input-with-unit">
+              <input id="wage" name="wage" type="text" inputmode="numeric" placeholder="1,200" autocomplete="off" required />
+              <span>円</span>
+            </div>
+          </div>
+
+          <fieldset class="form-card">
+            <legend><span class="step">4</span> 1日に働く時間</legend>
+            <div class="choice-grid" data-choice="hours-per-day">
+              <button type="button" data-value="3">3時間</button><button type="button" data-value="4">4時間</button>
+              <button type="button" data-value="5" class="selected">5時間</button><button type="button" data-value="6">6時間</button>
+              <button type="button" data-value="7">7時間</button><button type="button" data-value="8">8時間</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-card">
+            <legend><span class="step">5</span> 1週間に働く日数</legend>
+            <div class="choice-grid" data-choice="days-per-week">
+              <button type="button" data-value="1">1日</button><button type="button" data-value="2">2日</button>
+              <button type="button" data-value="3">3日</button><button type="button" data-value="4">4日</button>
+              <button type="button" data-value="5" class="selected">5日</button><button type="button" data-value="6">6日</button>
+            </div>
+          </fieldset>
+
+          <p id="form-error" class="error" role="alert" aria-live="polite"></p>
+          <button class="primary-button" type="submit">計算してみる <span aria-hidden="true">→</span></button>
+          <p class="privacy"><span aria-hidden="true">🔒</span> 入力内容はブラウザ内だけで計算されます</p>
+        </form>
+      </section>
+
+      <section id="result-screen" class="screen result-screen" hidden aria-labelledby="result-heading">
+        <div class="celebration" aria-hidden="true">✦　<span>✨</span>　✦</div>
+        <p class="result-lead">あなたの欲しい</p>
+        <h2 id="result-heading"></h2>
+        <p class="result-lead">を買うには…</p>
+
+        <div class="main-result">
+          <span class="approx">約</span><strong id="result-hours">0</strong><span class="unit">時間</span>
+          <p>働けば手が届きます</p>
+        </div>
+
+        <p id="schedule-copy" class="schedule-copy"></p>
+        <div class="result-grid">
+          <article><span aria-hidden="true">☀️</span><p>働く日数</p><strong id="result-days"></strong></article>
+          <article><span aria-hidden="true">🗓️</span><p>期間の目安</p><strong id="result-weeks"></strong></article>
+          <article><span aria-hidden="true">🌙</span><p>月にすると</p><strong id="result-months"></strong></article>
+        </div>
+        <p id="long-term-result" class="long-term" hidden></p>
+
+        <blockquote>「今日の1時間も、<br />欲しいものに近づく1時間<span aria-hidden="true">✨</span>」</blockquote>
+        <button id="reset-button" class="secondary-button" type="button"><span aria-hidden="true">↻</span> もう一度計算する</button>
+        <p class="privacy"><span aria-hidden="true">🔒</span> 入力内容は保存・送信されません</p>
+      </section>
+    </main>
+  </body>
+</html>
